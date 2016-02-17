@@ -30,6 +30,10 @@
 			
 			import mx.events.FlexEvent;
 			
+			import spark.transitions.SlideViewTransition;
+			import spark.transitions.SlideViewTransitionMode;
+			import spark.transitions.ViewTransitionDirection;0
+			
 			import spark.components.View;
 			
 			[Bindable] private var appModel:AppModel = AppModel.getInstance();
@@ -40,7 +44,10 @@
 				switch(workflowState)
 				{
 					case appModel.VIEWING_HOME:
-						navigator.pushView(com.landingbolts.view.HomeView);
+						var slideTransition:SlideViewTransition = new SlideViewTransition();
+						slideTransition.direction = ViewTransitionDirection.RIGHT;
+						slideTransition.mode = SlideViewTransitionMode.COVER;  
+						navigator.pushView(com.landingbolts.view.HomeView, null, null, slideTransition);
 						appModel.analyticsTrackPageview('Home');
 						break;
 					
