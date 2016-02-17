@@ -6,12 +6,22 @@
 		creationComplete="creationCompleteHandler(event)" 
 		addedToStage="addedToStageHandler(event)"
 		viewActivate="viewActivateHandler(event)"
+		resize="resizeHandler(event)"
+		gestureSwipe="gestureSwipeHandler(event)"
 		>
 	<fx:Script>
 		<![CDATA[
+			import com.landingbolts.model.AppModel;
+			import com.landingbolts.model.AssetsModel;
+			
 			import mx.events.FlexEvent;
+			import mx.events.ResizeEvent;
 			
 			import spark.events.ViewNavigatorEvent;
+			
+			
+			[Bindable] private var appModel:AppModel = AppModel.getInstance();
+			[Bindable] private var assetsModel:AssetsModel = AssetsModel.getInstance();
 			
 			protected function initializeHandler(event:FlexEvent):void
 			{
@@ -19,6 +29,7 @@
 			
 			protected function creationCompleteHandler(event:FlexEvent):void
 			{
+				resizeImages();
 			}
 			
 			protected function addedToStageHandler(event:Event):void
@@ -29,7 +40,48 @@
 			{
 			}
 			
+			protected function gestureSwipeHandler(event:TransformGestureEvent):void
+			{
+				if (event.offsetX == 1 )  // swipe right
+				{ 
+					appModel.workflowState = appModel.VIEWING_HOME;
+				}
+				else if (event.offsetX == -1 ) // swipe left
+				{
+				}
+				else if (event.offsetY == -1 ) // swipe up
+				{
+				}
+				else if (event.offsetY == 1 ) // swipe down
+				{
+				}
+			}
+			
+			protected function resizeHandler(event:ResizeEvent):void
+			{
+				resizeImages();		
+			}
+			
+			
+			private function resizeImages():void
+			{
+				image_day04.width = this.width;
+				image_day04.height = assetsModel.day_04.height * this.width / 1100;
+				
+			}
+			
 		]]>
 	</fx:Script>
+	
+	<s:Scroller left="0" right="0" top="0" bottom="0">
+		<s:VGroup id="imagesVGroup" gap="0" left="0" right="0" top="0">
+			
+			<s:Image id="image_day04"
+					 source="{assetsModel.day_04.url}"
+					 smooth="true" 
+					 />
+			
+		</s:VGroup>
+	</s:Scroller>
 	
 </s:View>

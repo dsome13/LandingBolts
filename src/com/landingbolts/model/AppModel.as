@@ -54,7 +54,7 @@ package com.landingbolts.model
 		//--------------------------------------------------------------------------
 		// WORKFLOW STATES
 		//--------------------------------------------------------------------------
-		protected var _workflowState:Number = VIEWING_BLANK;
+		protected var _workflowState:Number = VIEWING_HOME;
 		public function get workflowState():Number
 		{
 			return _workflowState;
@@ -67,20 +67,20 @@ package com.landingbolts.model
 		
 		public var VIEWING_BLANK:Number 			= 0;
 		public var VIEWING_HOME:Number 				= 50; // home page
-		public var VIEWING_DAY_ONE:Number 			= 100; 
-		public var VIEWING_DAY_TWO:Number 			= 200; 
-		public var VIEWING_DAY_THREE:Number 		= 300; 
-		public var VIEWING_DAY_FOUR:Number 			= 400; 
-		public var VIEWING_DAY_FIVE:Number 			= 500; 
-		public var VIEWING_DAY_SIX:Number 			= 600; 
-		public var VIEWING_DAY_SEVEN:Number 		= 700; 
-		public var VIEWING_DAY_EIGHT:Number 		= 800; 
-		public var VIEWING_DAY_NINE:Number 			= 900; 
-		public var VIEWING_DAY_TEN:Number 			= 1000; 
-		public var VIEWING_DAY_ELEVEN:Number 		= 1100; 
-		public var VIEWING_DAY_TWELVE:Number 		= 1200; 
-		public var VIEWING_DAY_THIRTEEN:Number 		= 1300; 
-		public var VIEWING_DAY_FOURTEEN:Number 		= 1400; 
+		public var VIEWING_DAY_01:Number 			= 100; 
+		public var VIEWING_DAY_02:Number 			= 200; 
+		public var VIEWING_DAY_03:Number 			= 300; 
+		public var VIEWING_DAY_04:Number 			= 400; 
+		public var VIEWING_DAY_05:Number 			= 500; 
+		public var VIEWING_DAY_06:Number 			= 600; 
+		public var VIEWING_DAY_07:Number 			= 700; 
+		public var VIEWING_DAY_08:Number 			= 800; 
+		public var VIEWING_DAY_09:Number 			= 900; 
+		public var VIEWING_DAY_10:Number 			= 1000; 
+		public var VIEWING_DAY_11:Number	 		= 1100; 
+		public var VIEWING_DAY_12:Number 			= 1200; 
+		public var VIEWING_DAY_13:Number 			= 1300; 
+		public var VIEWING_DAY_14:Number 			= 1400; 
 
 	}
 }

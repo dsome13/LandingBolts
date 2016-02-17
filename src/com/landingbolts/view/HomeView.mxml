@@ -10,10 +10,18 @@
 		>
 	<fx:Script>
 		<![CDATA[
+			import com.landingbolts.model.AppModel;
+			import com.landingbolts.model.AssetsModel;
+			
+			import flash.net.navigateToURL;
+			
 			import mx.events.FlexEvent;
 			import mx.events.ResizeEvent;
 			
 			import spark.events.ViewNavigatorEvent;
+			
+			[Bindable] private var appModel:AppModel = AppModel.getInstance();
+			[Bindable] private var assetsModel:AssetsModel = AssetsModel.getInstance();
 			
 			protected function initializeHandler(event:FlexEvent):void
 			{
@@ -21,7 +29,7 @@
 			
 			protected function creationCompleteHandler(event:FlexEvent):void
 			{
-				resizeImage();
+				resizeImages();
 			}
 			
 			protected function addedToStageHandler(event:Event):void
@@ -30,41 +38,252 @@
 			
 			protected function viewActivateHandler(event:ViewNavigatorEvent):void
 			{
+				if(appModel.workflowState != appModel.VIEWING_HOME)
+					appModel.workflowState = appModel.VIEWING_HOME;
 			}
 			
 			protected function resizeHandler(event:ResizeEvent):void
 			{
-				resizeImage();		
+				resizeImages();		
 			}
 			
-			private function resizeImage():void
+			
+			private function resizeImages():void
 			{
-				if(this.width < 1500)
+				// -----------------------------------
+				// All the images are 1500px wide
+				// -----------------------------------
+				// Adjust widths
+				image_landingBolts.width = this.width;
+					
+				image_tileDay01.width = this.width;
+				image_tileDay02.width = this.width;
+				image_tileDay03.width = this.width;
+				image_tileDay04.width = this.width;
+				image_tileDay05.width = this.width;
+				image_tileDay06.width = this.width;
+				image_tileDay07.width = this.width;
+				image_tileDay08.width = this.width;
+				image_tileDay09.width = this.width;
+				image_tileDay10.width = this.width;
+				image_tileDay11.width = this.width;
+				image_tileDay12.width = this.width;
+				image_tileDay13.width = this.width;
+				image_tileDay14.width = this.width;
+					
+				image_videos.width = this.width;
+				image_about.width = this.width;
+				
+				// -----------------------------------
+				// Adjust heights
+				image_landingBolts.height = assetsModel.tile_landing_bolts.height * this.width / 1500;
+					
+				image_tileDay01.height = assetsModel.tile_day_01.height * this.width / 1500;
+				image_tileDay02.height = assetsModel.tile_day_02.height * this.width / 1500;
+				image_tileDay03.height = assetsModel.tile_day_03.height * this.width / 1500;
+				image_tileDay04.height = assetsModel.tile_day_04.height * this.width / 1500;
+				image_tileDay05.height = assetsModel.tile_day_05.height * this.width / 1500;
+				image_tileDay06.height = assetsModel.tile_day_06.height * this.width / 1500;
+				image_tileDay07.height = assetsModel.tile_day_07.height * this.width / 1500;
+				image_tileDay08.height = assetsModel.tile_day_08.height * this.width / 1500;
+				image_tileDay09.height = assetsModel.tile_day_09.height * this.width / 1500;
+				image_tileDay10.height = assetsModel.tile_day_10.height * this.width / 1500;
+				image_tileDay11.height = assetsModel.tile_day_11.height * this.width / 1500;
+				image_tileDay12.height = assetsModel.tile_day_12.height * this.width / 1500;
+				image_tileDay13.height = assetsModel.tile_day_13.height * this.width / 1500;
+				image_tileDay14.height = assetsModel.tile_day_14.height * this.width / 1500;
+					
+				image_videos.height = assetsModel.tile_videos.height * this.width / 1500;
+				image_about.height = assetsModel.tile_about.height * this.width / 1500;
+				
+			}
+			
+			
+			protected function tileClickHandler(event:MouseEvent):void
+			{
+				switch(event.currentTarget)
 				{
-					img.width = this.width;
-					img.height = 12387 * this.width / 1500; 
-//					img.scaleX = img.scaleY = 1500/this.width;
+					case image_landingBolts:
+						break;
+					
+					case image_tileDay01:
+						appModel.workflowState = appModel.VIEWING_DAY_01;
+						break;
+					
+					case image_tileDay02:
+						appModel.workflowState = appModel.VIEWING_DAY_02;
+						break;
+					
+					case image_tileDay03:
+						appModel.workflowState = appModel.VIEWING_DAY_03;
+						break;
+					
+					case image_tileDay04:
+						appModel.workflowState = appModel.VIEWING_DAY_04;
+						break;
+					
+					case image_tileDay05:
+						appModel.workflowState = appModel.VIEWING_DAY_05;
+						break;
+					
+					case image_tileDay06:
+						appModel.workflowState = appModel.VIEWING_DAY_06;
+						break;
+					
+					case image_tileDay07:
+						appModel.workflowState = appModel.VIEWING_DAY_07;
+						break;
+					
+					case image_tileDay08:
+						appModel.workflowState = appModel.VIEWING_DAY_08;
+						break;
+					
+					case image_tileDay09:
+						appModel.workflowState = appModel.VIEWING_DAY_09;
+						break;
+					
+					case image_tileDay10:
+						appModel.workflowState = appModel.VIEWING_DAY_10;
+						break;
+					
+					case image_tileDay11:
+						appModel.workflowState = appModel.VIEWING_DAY_11;
+						break;
+					
+					case image_tileDay12:
+						appModel.workflowState = appModel.VIEWING_DAY_12;
+						break;
+					
+					case image_tileDay13:
+						appModel.workflowState = appModel.VIEWING_DAY_13;
+						break;
+					
+					case image_tileDay14:
+						appModel.workflowState = appModel.VIEWING_DAY_14;
+						break;
+					
+					case image_videos:
+//						appModel.workflowState = appModel.VIEWING_DAY_02;
+						navigateToURL(new URLRequest('http://www.msskateministry.com/videos'), "_blank");
+						break;
+					
+					case image_about:
+//						appModel.workflowState = appModel.VIEWING_DAY_02;
+						navigateToURL(new URLRequest('http://www.msskateministry.com/'), "_blank");
+						break;
+					
+					
 				}
-				else
-				{
-					img.width = this.width;
-					img.height = 12387 * this.width / 1500; 
-//					img.scaleX = img.scaleY = this.width/1500;
-				}
-				trace('this.width: ' + this.width);
+				
 			}
 			
 		]]>
 	</fx:Script>
 	<s:Scroller left="0" right="0" top="0" bottom="0">
-		<s:VGroup gap="0" left="0" right="0" top="0">
-			<s:Image id="img"
-					 source="assets/images/LandingBolts-HomePage.jpg" 
+		<s:VGroup id="imagesVGroup" gap="23" left="0" right="0" top="0">
+			
+			<s:Image id="image_landingBolts"
+					 source="{assetsModel.tile_landing_bolts.url}"
 					 smooth="true" 
+					 click="tileClickHandler(event)"
 					 />
-			<!--
-					 width="{this.width}" height="{12387 * this.width/1500}"
-			-->
+			
+			<s:Image id="image_tileDay01"
+					 source="{assetsModel.tile_day_01.url}"
+					 smooth="true"
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay02"
+					 source="{assetsModel.tile_day_02.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay03"
+					 source="{assetsModel.tile_day_03.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay04"
+					 source="{assetsModel.tile_day_04.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay05"
+					 source="{assetsModel.tile_day_05.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay06"
+					 source="{assetsModel.tile_day_06.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay07"
+					 source="{assetsModel.tile_day_07.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay08"
+					 source="{assetsModel.tile_day_08.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay09"
+					 source="{assetsModel.tile_day_09.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay10"
+					 source="{assetsModel.tile_day_10.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay11"
+					 source="{assetsModel.tile_day_11.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay12"
+					 source="{assetsModel.tile_day_12.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay13"
+					 source="{assetsModel.tile_day_13.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_tileDay14"
+					 source="{assetsModel.tile_day_14.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_videos"
+					 source="{assetsModel.tile_videos.url}"
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
+			<s:Image id="image_about"
+					 source="{assetsModel.tile_about.url}" 
+					 smooth="true" 
+					 click="tileClickHandler(event)"
+					 />
+			
 		</s:VGroup>
 	</s:Scroller>
 </s:View>

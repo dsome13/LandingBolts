@@ -27,6 +27,8 @@
 			
 			import mx.events.FlexEvent;
 			
+			import spark.components.View;
+			
 			[Bindable] private var appModel:AppModel = AppModel.getInstance();
 			
 			private function getState(workflowState:Number):String
@@ -34,80 +36,77 @@
 				
 				switch(workflowState)
 				{
-					case appModel.VIEWING_BLANK:
-						break;
-					
 					case appModel.VIEWING_HOME:
 						navigator.pushView(com.landingbolts.view.HomeView);
 						appModel.analyticsTrackPageview('Home');
 						break;
 					
-					case appModel.VIEWING_DAY_ONE:
+					case appModel.VIEWING_DAY_01:
 						navigator.pushView(com.landingbolts.view.DayOneView);
 						appModel.analyticsTrackPageview('Day One');
 						break;
 					
-					case appModel.VIEWING_DAY_TWO:
+					case appModel.VIEWING_DAY_02:
 						navigator.pushView(com.landingbolts.view.DayTwoView);
 						appModel.analyticsTrackPageview('Day Two');
 						break;
 					
-					case appModel.VIEWING_DAY_THREE:
+					case appModel.VIEWING_DAY_03:
 						navigator.pushView(com.landingbolts.view.DayThreeView);
 						appModel.analyticsTrackPageview('Day Three');
 						break;
 					
-					case appModel.VIEWING_DAY_FOUR:
+					case appModel.VIEWING_DAY_04:
 						navigator.pushView(com.landingbolts.view.DayFourView);
 						appModel.analyticsTrackPageview('Day Four');
 						break;
 					
-					case appModel.VIEWING_DAY_FIVE:
+					case appModel.VIEWING_DAY_05:
 						navigator.pushView(com.landingbolts.view.DayFiveView);
 						appModel.analyticsTrackPageview('Day Five');
 						break;
 					
-					case appModel.VIEWING_DAY_SIX:
+					case appModel.VIEWING_DAY_06:
 						navigator.pushView(com.landingbolts.view.DaySixView);
 						appModel.analyticsTrackPageview('Day Six');
 						break;
 					
-					case appModel.VIEWING_DAY_SEVEN:
+					case appModel.VIEWING_DAY_07:
 						navigator.pushView(com.landingbolts.view.DaySevenView);
 						appModel.analyticsTrackPageview('Day Seven');
 						break;
 					
-					case appModel.VIEWING_DAY_EIGHT:
+					case appModel.VIEWING_DAY_08:
 						navigator.pushView(com.landingbolts.view.DayEightView);
 						appModel.analyticsTrackPageview('Day Eight');
 						break;
 					
-					case appModel.VIEWING_DAY_NINE:
+					case appModel.VIEWING_DAY_09:
 						navigator.pushView(com.landingbolts.view.DayNineView);
 						appModel.analyticsTrackPageview('Day Nine');
 						break;
 					
-					case appModel.VIEWING_DAY_TEN:
+					case appModel.VIEWING_DAY_10:
 						navigator.pushView(com.landingbolts.view.DayTenView);
 						appModel.analyticsTrackPageview('Day Ten');
 						break;
 					
-					case appModel.VIEWING_DAY_ELEVEN:
+					case appModel.VIEWING_DAY_11:
 						navigator.pushView(com.landingbolts.view.DayElevenView);
 						appModel.analyticsTrackPageview('Day Eleven');
 						break;
 					
-					case appModel.VIEWING_DAY_TWELVE:
+					case appModel.VIEWING_DAY_12:
 						navigator.pushView(com.landingbolts.view.DayTwelveView);
 						appModel.analyticsTrackPageview('Day Twelve');
 						break;
 					
-					case appModel.VIEWING_DAY_THIRTEEN:
+					case appModel.VIEWING_DAY_13:
 						navigator.pushView(com.landingbolts.view.DayThirteenView);
 						appModel.analyticsTrackPageview('Day Thirteen');
 						break;
 					
-					case appModel.VIEWING_DAY_FOURTEEN:
+					case appModel.VIEWING_DAY_14:
 						navigator.pushView(com.landingbolts.view.DayFourteenView);
 						appModel.analyticsTrackPageview('Day Fourteen');
 						break;
