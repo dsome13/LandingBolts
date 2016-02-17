@@ -10,6 +10,9 @@
 			   applicationComplete="{onApplicationComplete()}"
 			   currentState="{getState(appModel.workflowState)}"
 			   
+			   splashScreenImage="@Embed('assets/images/icons/Default-568h@2x.png')"
+			   splashScreenScaleMode="zoom"
+			   
 			   firstView="com.landingbolts.view.HomeView"
 			   >
 	<!--
