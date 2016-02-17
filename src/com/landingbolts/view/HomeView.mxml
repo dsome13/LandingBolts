@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:View xmlns:fx="http://ns.adobe.com/mxml/2009" 
+		xmlns:s="library://ns.adobe.com/flex/spark" 
+		actionBarVisible="false" 
+		initialize="initializeHandler(event)"
+		creationComplete="creationCompleteHandler(event)" 
+		addedToStage="addedToStageHandler(event)"
+		viewActivate="viewActivateHandler(event)"
+		resize="resizeHandler(event)"
+		>
+	<fx:Script>
+		<![CDATA[
+			import mx.events.FlexEvent;
+			import mx.events.ResizeEvent;
+			
+			import spark.events.ViewNavigatorEvent;
+			
+			protected function initializeHandler(event:FlexEvent):void
+			{
+			}
+			
+			protected function creationCompleteHandler(event:FlexEvent):void
+			{
+				resizeImage();
+			}
+			
+			protected function addedToStageHandler(event:Event):void
+			{
+			}
+			
+			protected function viewActivateHandler(event:ViewNavigatorEvent):void
+			{
+			}
+			
+			protected function resizeHandler(event:ResizeEvent):void
+			{
+				resizeImage();		
+			}
+			
+			private function resizeImage():void
+			{
+				if(this.width < 1500)
+				{
+					img.width = this.width;
+					img.height = 12387 * this.width / 1500; 
+//					img.scaleX = img.scaleY = 1500/this.width;
+				}
+				else
+				{
+					img.width = this.width;
+					img.height = 12387 * this.width / 1500; 
+//					img.scaleX = img.scaleY = this.width/1500;
+				}
+				trace('this.width: ' + this.width);
+			}
+			
+		]]>
+	</fx:Script>
+	<s:Scroller left="0" right="0" top="0" bottom="0">
+		<s:VGroup gap="0" left="0" right="0" top="0">
+			<s:Image id="img"
+					 source="assets/images/LandingBolts-HomePage.jpg" 
+					 smooth="true" 
+					 />
+			<!--
+					 width="{this.width}" height="{12387 * this.width/1500}"
+			-->
+		</s:VGroup>
+	</s:Scroller>
+</s:View>

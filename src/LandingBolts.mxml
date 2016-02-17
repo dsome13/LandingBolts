@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="utf-8"?>
+<s:ViewNavigatorApplication xmlns:fx="http://ns.adobe.com/mxml/2009" 
+			   xmlns:s="library://ns.adobe.com/flex/spark" 
+			   applicationDPI="320"
+			   runtimeDPIProvider="com.landingbolts.utils.DPIOverrideClass"
+			   
+			   preinitialize="{application_preinitializeHandler(event)}"
+			   navigatorStateSaving="{onPersisting(event)}" 
+			   navigatorStateLoading="{onRestoring(event)}"
+			   applicationComplete="{onApplicationComplete()}"
+			   currentState="{getState(appModel.workflowState)}"
+			   
+			   firstView="com.landingbolts.view.HomeView"
+			   >
+	<!--
+			   splashScreenMinimumDisplayTime="1500"
+			   splashScreenImage="@Embed('assets/images/Default-568h@2x.png')"
+			   splashScreenScaleMode="letterbox"
+			   resizeForSoftKeyboard="true" 
+			   persistNavigatorState="false"
+	-->
+	<fx:Script>
+		<![CDATA[
+			import com.google.analytics.GATracker;
+			import com.landingbolts.model.AppModel;
+			import com.landingbolts.view.DayOneView;
+			
+			import mx.events.FlexEvent;
+			
+			[Bindable] private var appModel:AppModel = AppModel.getInstance();
+			
+			private function getState(workflowState:Number):String
+			{
+				
+				switch(workflowState)
+				{
+					case appModel.VIEWING_BLANK:
+						break;
+					
+					case appModel.VIEWING_HOME:
+						navigator.pushView(com.landingbolts.view.HomeView);
+						appModel.analyticsTrackPageview('Home');
+						break;
+					
+					case appModel.VIEWING_DAY_ONE:
+						navigator.pushView(com.landingbolts.view.DayOneView);
+						appModel.analyticsTrackPageview('Day One');
+						break;
+					
+					case appModel.VIEWING_DAY_TWO:
+						navigator.pushView(com.landingbolts.view.DayTwoView);
+						appModel.analyticsTrackPageview('Day Two');
+						break;
+					
+					case appModel.VIEWING_DAY_THREE:
+						navigator.pushView(com.landingbolts.view.DayThreeView);
+						appModel.analyticsTrackPageview('Day Three');
+						break;
+					
+					case appModel.VIEWING_DAY_FOUR:
+						navigator.pushView(com.landingbolts.view.DayFourView);
+						appModel.analyticsTrackPageview('Day Four');
+						break;
+					
+					case appModel.VIEWING_DAY_FIVE:
+						navigator.pushView(com.landingbolts.view.DayFiveView);
+						appModel.analyticsTrackPageview('Day Five');
+						break;
+					
+					case appModel.VIEWING_DAY_SIX:
+						navigator.pushView(com.landingbolts.view.DaySixView);
+						appModel.analyticsTrackPageview('Day Six');
+						break;
+					
+					case appModel.VIEWING_DAY_SEVEN:
+						navigator.pushView(com.landingbolts.view.DaySevenView);
+						appModel.analyticsTrackPageview('Day Seven');
+						break;
+					
+					case appModel.VIEWING_DAY_EIGHT:
+						navigator.pushView(com.landingbolts.view.DayEightView);
+						appModel.analyticsTrackPageview('Day Eight');
+						break;
+					
+					case appModel.VIEWING_DAY_NINE:
+						navigator.pushView(com.landingbolts.view.DayNineView);
+						appModel.analyticsTrackPageview('Day Nine');
+						break;
+					
+					case appModel.VIEWING_DAY_TEN:
+						navigator.pushView(com.landingbolts.view.DayTenView);
+						appModel.analyticsTrackPageview('Day Ten');
+						break;
+					
+					case appModel.VIEWING_DAY_ELEVEN:
+						navigator.pushView(com.landingbolts.view.DayElevenView);
+						appModel.analyticsTrackPageview('Day Eleven');
+						break;
+					
+					case appModel.VIEWING_DAY_TWELVE:
+						navigator.pushView(com.landingbolts.view.DayTwelveView);
+						appModel.analyticsTrackPageview('Day Twelve');
+						break;
+					
+					case appModel.VIEWING_DAY_THIRTEEN:
+						navigator.pushView(com.landingbolts.view.DayThirteenView);
+						appModel.analyticsTrackPageview('Day Thirteen');
+						break;
+					
+					case appModel.VIEWING_DAY_FOURTEEN:
+						navigator.pushView(com.landingbolts.view.DayFourteenView);
+						appModel.analyticsTrackPageview('Day Fourteen');
+						break;
+					
+				}
+				
+				return '';
+			}
+			
+			protected function onApplicationComplete():void
+			{
+				
+				//appModel.analyticsTracker = new GATracker(this, "45246206", "AS3", false);
+				
+				this.stage.addEventListener(StageOrientationEvent.ORIENTATION_CHANGE, onOrientationChange);
+				
+				// Request to be notified when the display state changes (minimized, maximized)
+				addEventListener(NativeWindowDisplayStateEvent.DISPLAY_STATE_CHANGING, onDisplayStateChange);
+				
+				// Request to be notified when this application is activated (brought forward as the active window)
+				// or deactivated
+				NativeApplication.nativeApplication.addEventListener(Event.ACTIVATE, onActivate);
+				NativeApplication.nativeApplication.addEventListener(Event.DEACTIVATE, onDeactivate);
+				
+				// Invoke listener - request to be notified when the AIR app is invoked (started), this could occur from the command line, UI or
+				// from opening an associated file
+				NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, onInvoke);
+				
+				// Get notified whan a global error occurs
+				loaderInfo.uncaughtErrorEvents.addEventListener(UncaughtErrorEvent.UNCAUGHT_ERROR, onError);
+				
+				// Capture exiting event
+				NativeApplication.nativeApplication.addEventListener(Event.EXITING,onAppExiting);
+				
+				// Set the idle mode to KEEP AWAKE
+				NativeApplication.nativeApplication.systemIdleMode = SystemIdleMode.KEEP_AWAKE;
+				
+				
+				// Force check for orientation
+				onOrientationChange(null);
+				
+			}
+			
+			protected function application_preinitializeHandler(event:FlexEvent):void
+			{
+				NativeApplication.nativeApplication.addEventListener(InvokeEvent.INVOKE, applicationInvokeHandler);
+			}
+			
+			private function applicationInvokeHandler(event:InvokeEvent):void
+			{
+			}
+			
+			// Handle device orientation changes
+			protected function onOrientationChange(event:StageOrientationEvent):void
+			{
+				//trace("Orientation changed from " + event.beforeOrientation + " to " + event.afterOrientation);
+				trace( 'this.stage.deviceOrientation: ' + this.stage.deviceOrientation )
+				this.dispatchEvent(new Event('stageOrientationChange', true));
+			}
+			
+			// The application display state has changed
+			protected function onDisplayStateChange(e:NativeWindowDisplayStateEvent):void
+			{
+				trace("Display State Changed from " + e.beforeDisplayState + " to " + e.afterDisplayState);
+			}
+			
+			// The application is now in the foreground and active, restore the frameRate to the default
+			protected function onActivate(event:Event):void
+			{
+				trace("Handling application activate event");
+//				stage.frameRate=24; 
+			}
+			
+			// Handle the application being sent to the background
+			// 	calls garbage collect and lowers frame rate to use less resources
+			protected function onDeactivate(event:Event):void 
+			{
+				trace("Handling application deactivate event");
+//				System.gc();
+//				stage.frameRate=2;
+			}
+			
+			// Called when application is first invoked
+			protected function onInvoke(invokeEvt:InvokeEvent):void 
+			{
+				trace("Handling invoke event");
+			}
+			
+			protected function onError(e:UncaughtErrorEvent):void
+			{
+//				e.preventDefault();
+				trace("An error has occurred and been caught by the global error handler: " + e.error.toString(), "My Global Error Handler");
+			}
+			
+			
+			// Called when application exits
+			protected function onAppExiting(e:Event):void
+			{
+				trace("Handling application exit event");
+			}
+			
+			// Called when application is about to persist data (can call cancel if this is not desired)
+			protected function onPersisting(e:FlexEvent):void
+			{
+				trace("Handling persisting event");
+			}
+			
+			// Called when application is about to restore data (can call cancel if this is not desired)
+			protected function onRestoring(e:FlexEvent):void
+			{
+				trace("Handling restoring event");
+			}
+			
+		]]>
+	</fx:Script>
+	
+</s:ViewNavigatorApplication>
